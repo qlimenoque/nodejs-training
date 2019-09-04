@@ -50,6 +50,13 @@ const userRoutes = (app, fs) => {
     })
   });
 
+  app.get('/users/:id', (req, res) => {
+    readFile(data => {
+      const requestId = parseInt(req.params['id']);
+      return console.log(data['users'].find(x => x.id === requestId));
+    }, true)
+  });
+
   // CREATE
   app.post('/users/', (req, res) => {
         readFile(data => {
