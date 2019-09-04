@@ -10,6 +10,6 @@ app.use(bodyParser.urlencoded( {extended: true} ));
 
 const routes = require('./routes/routes')(app, fs);
 
-const server = app.listen(3001, () => {
+const server = app.listen(3001, '0.0.0.0', () => {
   console.log('listening on port %s...', server.address().port);
 });
