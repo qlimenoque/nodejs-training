@@ -1,5 +1,20 @@
 const path = require('path');
 
+class User {
+  constructor(id, username, password, firstName, lastName, age, gender) {
+    this.id = id;
+    this.username = username;
+    this.password = password;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.gender = gender;
+  }
+}
+
+
+
+
 const userRoutes = (app, fs) => {
   const dataPath = path.join(__dirname, '../data/users.json');
   let userList = [];
@@ -40,14 +55,9 @@ const userRoutes = (app, fs) => {
         readFile(data => {
               userList = data['users'];
               const newUserId = userList.length + 1;
+              let body = req.body;
               console.log(userList);
-              console.log(newUserId);
-              userList.push(
-                  {
-                    id: newUserId,
-                    username: '123'
-                  }
-              );
+              userList.push({id: newUserId, ...body});
               writeFile(JSON.stringify(data, null, 2),() => {
                 res.status(200).send('new user added');
               });
