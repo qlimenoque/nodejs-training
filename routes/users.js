@@ -1,30 +1,13 @@
 const path = require('path');
 
-class User {
-  constructor(id, username, password, firstName, lastName, age, gender) {
-    this.id = id;
-    this.username = username;
-    this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age;
-    this.gender = gender;
-  }
-}
-
-
-
-
 const userRoutes = (app, fs) => {
   const dataPath = path.join(__dirname, '../data/users.json');
   let userList = [];
-
   const readFile = (callback, returnJson = false, filePath = dataPath, encoding = 'utf8') => {
     fs.readFile(filePath, encoding, (err, data) => {
       if (err) {
         throw err;
       }
-
       callback(returnJson ? JSON.parse(data) : data);
     });
   };
@@ -34,7 +17,6 @@ const userRoutes = (app, fs) => {
       if (err) {
         throw err;
       }
-
       callback();
     });
   };
@@ -45,7 +27,6 @@ const userRoutes = (app, fs) => {
       if (err) {
         throw err;
       }
-
       res.send(JSON.parse(data)['users']);
     })
   });
@@ -77,7 +58,6 @@ const userRoutes = (app, fs) => {
   app.delete('/users/:id', (req, res) => {
     console.log('[backend] Delete works');
     readFile(data => {
-
           // add the new user
           const userId = req.params["id"];
           console.log('Received id', userId);
@@ -87,7 +67,7 @@ const userRoutes = (app, fs) => {
 
           writeFile(JSON.stringify(data, null, 2), () => {
             res.status(200).send(`User id:${userId} removed`);
-            console.log(`User id:${userId} removed`);
+            console.log(`User id: ${userId} removed`);
           });
         },
         true);
