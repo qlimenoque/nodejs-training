@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "test",
+      "password": "test",
+      "firstName": "Test",
+      "lastName": "User",
+      "age": 21,
+      "gender": "Female"
+    },
+    {
+      "id": 2,
+      "username": "bob",
+      "password": "bob",
+      "firstName": "Bob",
+      "lastName": "Parker",
+      "age": 25,
+      "gender": "Male"
+    },
+    {
+      "id": 3,
+      "username": "admin",
+      "password": "admin",
+      "firstName": "Sam",
+      "lastName": "Johnson",
+      "age": 25,
+      "gender": "Male"
+    },
+    {
+      "id": 4,
+      "username": "alice",
+      "password": "bob",
+      "firstName": "Alice",
+      "lastName": "Cranston",
+      "age": 25,
+      "gender": "Female"
+    }
+  ]
+}

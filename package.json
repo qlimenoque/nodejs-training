@@ -1,0 +1,15 @@
+{
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "^4.17.1",
+    "node": "^12.9.1"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "nodemon": "^1.19.2"
+  }
+}
