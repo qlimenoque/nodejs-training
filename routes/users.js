@@ -31,10 +31,11 @@ const userRoutes = (app, fs) => {
     })
   });
 
+  // Get user info
   app.get('/users/:id', (req, res) => {
     readFile(data => {
       const requestId = parseInt(req.params['id']);
-      return console.log(data['users'].find(x => x.id === requestId));
+      return res.status(200).send(data['users'].find(x => x.id === requestId));
     }, true)
   });
 
@@ -72,6 +73,40 @@ const userRoutes = (app, fs) => {
         },
         true);
   });
+
+
+  // app.post('/users/:id?firstName=:firstName&lastName=:lastName&age=:age&gender=:gender', (req, res) => {
+  app.put('/users/:id', (req, res) => {
+        readFile(data => {
+          const requestId = parseInt(req.params['id']);
+          const user = data['users'].find(x => x.id === requestId);
+
+          if (!req.body) {
+            return res.status(400).send('No body');
+          }
+
+          console.log('Query: ', req.query);
+          console.log('Body: ', req.body);
+          console.log('Params: ', req.params);
+
+          if (req.body.firstName) {
+            user.firstName = req.body.firstName;
+          }
+          if (req.body.lastName) {
+            user.lastName = req.body.lastName;
+          }
+          if (req.body.age) {
+            user.age = req.body.age;
+          }
+          if (req.body.gender) {
+            user.gender = req.body.gender;
+          }
+          writeFile(JSON.stringify(data, null, 2),() => {
+            res.status(200).send(`User [${user.id}] ${user.username} successfully updated!`);
+          });
+        }, true)
+      }
+  );
 };
 
 module.exports = userRoutes;
