@@ -48,7 +48,7 @@ const userRoutes = (app, fs) => {
               console.log(userList);
               userList.push({id: newUserId, ...body});
               writeFile(JSON.stringify(data, null, 2),() => {
-                res.status(200).send('new user added');
+                res.status(200).send(body);
               });
             }, true,
         );
@@ -102,7 +102,7 @@ const userRoutes = (app, fs) => {
             user.gender = req.body.gender;
           }
           writeFile(JSON.stringify(data, null, 2),() => {
-            res.status(200).send(`User [${user.id}] ${user.username} successfully updated!`);
+            res.status(200).send({user});
           });
         }, true)
       }
