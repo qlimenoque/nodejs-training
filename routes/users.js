@@ -21,13 +21,34 @@ const userRoutes = (app, fs) => {
     });
   };
 
+  // Authentication
+  app.post('/users/authenticate', (req, res) => {
+        readFile(data => {
+          const users = data['users'];
+          console.log(users);
+          const user = users.find(x => x.username === req.body.username && x.password === req.body.password);
+          console.log(user);
+          if (!user) {
+            return res.status(400).send('Username or password is incorrect');
+          }
+          res.status(200).send({
+            id: user.id,
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            token: 'fake-jwt-token'
+          });
+        }, true);
+      }
+  );
+
   // Get users
   app.get('/users/', (req, res) => {
     fs.readFile(dataPath, 'utf8', (err, data) => {
       if (err) {
         throw err;
       }
-      res.send(JSON.parse(data)['users']);
+      res.status(200).send(JSON.parse(data)['users']);
     })
   });
 
