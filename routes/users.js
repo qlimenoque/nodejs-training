@@ -25,11 +25,13 @@ const userRoutes = (app, fs) => {
   app.post('/users/authenticate', (req, res) => {
         readFile(data => {
           const users = data['users'];
-          console.log(users);
           const user = users.find(x => x.username === req.body.username && x.password === req.body.password);
           console.log(user);
           if (!user) {
-            return res.status(400).send('Username or password is incorrect');
+            return res.status(401).send({
+              code: '401',
+              message: 'Username or password is incorrect'
+            });
           }
           res.status(200).send({
             id: user.id,
@@ -96,7 +98,7 @@ const userRoutes = (app, fs) => {
   });
 
 
-  // app.post('/users/:id?firstName=:firstName&lastName=:lastName&age=:age&gender=:gender', (req, res) => {
+  // Update user
   app.put('/users/:id', (req, res) => {
         readFile(data => {
           const requestId = parseInt(req.params['id']);
