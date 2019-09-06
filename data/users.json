@@ -11,12 +11,12 @@
     },
     {
       "id": 2,
-      "username": "bob",
-      "password": "bob",
-      "firstName": "Bob",
-      "lastName": "Parker",
-      "age": 25,
-      "gender": "Male"
+      "username": "admin",
+      "firstName": "Admin",
+      "lastName": "Root",
+      "age": 101,
+      "gender": "Male",
+      "password": "admin"
     }
   ]
 }
